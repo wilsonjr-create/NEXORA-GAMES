@@ -1,0 +1,2 @@
+@import "tailwindcss";
+:root{color-scheme:dark}body{background:#080a10;color:#f5f5f7;font-family:Arial,Helvetica,sans-serif}button,a{transition:all .2s}button{cursor:pointer}.glass{background:rgba(24,27,41,.82);border:1px solid #343549}.accent{background:linear-gradient(110deg,#7c3aed,#b18bff)}.cover{background:linear-gradient(135deg,#22243c,#45297a 58%,#13141e)}
