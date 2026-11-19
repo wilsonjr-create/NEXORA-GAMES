@@ -189,7 +189,90 @@ const [ordersLoading, setOrdersLoading] = useState(true);
             </div>
           ))}
         </div>
+<section className="mt-10 rounded-2xl border border-white/10 bg-[#141421] p-7">
+  <div className="mb-6 flex items-center gap-3">
+    <ShoppingBag className="text-violet-400" />
+    <h2 className="text-2xl font-bold">
+      Histórico de compras
+    </h2>
+  </div>
 
+  {ordersLoading ? (
+    <p className="text-gray-400">
+      Carregando pedidos...
+    </p>
+  ) : orders.length === 0 ? (
+    <p className="text-gray-400">
+      Você ainda não possui pedidos registrados.
+    </p>
+  ) : (
+    <div className="space-y-4">
+      {orders.map((order) => (
+        <div
+          key={order.id}
+          className="rounded-xl border border-white/10 bg-[#0c0e17] p-5"
+        >
+          <div className="flex flex-wrap items-center justify-between gap-4">
+            <div>
+              <p className="text-sm text-gray-400">
+                Pedido #{order.id.slice(0, 8)}
+              </p>
+
+              <p className="mt-1 text-sm text-gray-400">
+                {new Date(order.created_at).toLocaleDateString("pt-BR")}
+              </p>
+            </div>
+
+            <span
+              className={`rounded-full px-3 py-1 text-xs font-semibold ${
+                order.status === "paid"
+                  ? "bg-green-500/10 text-green-400"
+                  : "bg-yellow-500/10 text-yellow-400"
+              }`}
+            >
+              {order.status === "paid"
+                ? "Pagamento aprovado"
+                : order.status === "failed"
+                  ? "Pagamento falhou"
+                  : "Pagamento pendente"}
+            </span>
+          </div>
+
+          <div className="mt-5 space-y-2">
+            {(order.items ?? []).map((item, index) => (
+              <div
+                key={index}
+                className="flex justify-between gap-4 text-sm"
+              >
+                <span className="text-gray-300">
+                  {item.description ?? "Jogo"} × {item.quantity ?? 1}
+                </span>
+
+                <span className="text-gray-400">
+                  {new Intl.NumberFormat("pt-BR", {
+                    style: "currency",
+                    currency: item.currency.toUpperCase(),
+                  }).format(item.amount_total / 100)}
+                </span>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-5 flex justify-between border-t border-white/10 pt-4">
+            <span className="font-semibold">Total</span>
+
+            <span className="font-bold text-violet-400">
+              {new Intl.NumberFormat("pt-BR", {
+                style: "currency",
+                currency: order.currency.toUpperCase(),
+              }).format(order.amount_total / 100)}
+            </span>
+          </div>
+        </div>
+      ))}
+    </div>
+  )}
+</section>
         <p className="mt-12 text-center text-xs text-gray-500">
           NEXORA GAMES · Projeto demonstrativo de portfólio
         </p>
