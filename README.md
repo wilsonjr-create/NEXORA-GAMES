@@ -2,6 +2,12 @@
 
 ### Full-Stack Gaming E-Commerce Platform
 
+**🌐 Live Demo:** https://nexora-games-zeta.vercel.app
+
+**📂 Source Code:** https://github.com/wilsonjr-create/NEXORA-GAMES
+
+**Deployment Status:** Live on Vercel | Stripe Test Checkout Verified
+
 NEXORA GAMES is a modern gaming storefront developed as a full-stack portfolio project.
 
 Built with Next.js, React, TypeScript, Supabase, and Stripe, the application demonstrates e-commerce architecture, authentication, payment integration, and database-backed purchase history.
@@ -29,6 +35,9 @@ Built with Next.js, React, TypeScript, Supabase, and Stripe, the application dem
 - Stripe webhook endpoint
 - Purchase history displayed in the account dashboard
 - Payment status tracking
+- Stripe webhook signature verification
+- Completed test payments recorded in Supabase PostgreSQL
+- Verified purchase history in the deployed application
 
 ## 🛠 Tech Stack
 
@@ -42,7 +51,7 @@ Built with Next.js, React, TypeScript, Supabase, and Stripe, the application dem
 | Payments | Stripe Checkout |
 | Icons | Lucide React, React Icons |
 | Version Control | Git, GitHub |
-| Deployment | Vercel (planned) |
+| Deployment | Vercel (live) |
 
 ## 📸 Screenshots
 
@@ -91,7 +100,7 @@ Configure the required environment variables in `.env.local`.
 
 ```env
 NEXT_PUBLIC_SUPABASE_URL=
-NEXT_PUBLIC_SUPABASE_ANON_KEY=
+NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=
 SUPABASE_SERVICE_ROLE_KEY=
 STRIPE_SECRET_KEY=
 STRIPE_WEBHOOK_SECRET=
@@ -121,7 +130,7 @@ The project includes authentication, database access controls, and server-side c
 
 Payment processing is restricted to Stripe test mode.
 
-Production deployment requires appropriate environment configuration, secure credential management, and validation of the complete payment flow.
+The application is deployed on Vercel. The Stripe test checkout, webhook processing, and database-backed purchase history have been validated in the deployed environment.
 
 ## 🗺 Roadmap
 
@@ -132,6 +141,8 @@ Production deployment requires appropriate environment configuration, secure cre
 - [x] User account dashboard
 - [x] Stripe test checkout integration
 - [x] Purchase history
+- [x] Vercel deployment
+- [x] Stripe webhook integration tested in the deployed application
 - [ ] Automated game-key allocation and delivery
 - [ ] Administrative inventory dashboard
 - [ ] Transactional email notifications
