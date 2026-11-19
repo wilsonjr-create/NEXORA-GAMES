@@ -2,7 +2,16 @@
 create extension if not exists pgcrypto;
 create table if not exists public.profiles (id uuid primary key references auth.users(id) on delete cascade, display_name text, created_at timestamptz not null default now());
 create table if not exists public.products (id uuid primary key default gen_random_uuid(), slug text unique not null, title text not null, description text not null default '', price_cents integer not null check(price_cents>=0), currency text not null default 'BRL', active boolean not null default false, created_at timestamptz not null default now());
-create table if not exists public.orders (id uuid primary key default gen_random_uuid(), user_id uuid not null references auth.users(id), status text not null default 'pending' check(status in ('pending','paid','fulfilled','refunded','canceled')), total_cents integer not null check(total_cents>=0), currency text not null default 'BRL', payment_provider text, provider_session_id text unique, created_at timestamptz not null default now());
+create table if not exists public.orders (
+  id uuid primary key default gen_random_uuid(),
+  user_id uuid not null references auth.users(id) on delete cascade,
+  stripe_session_id text not null unique,
+  status text not null default 'pending' check (status in ('pending', 'paid', 'failed', 'refunded')),
+  amount_total integer not null check (amount_total >= 0),
+  currency text not null default 'brl',
+  items jsonb not null default '[]'::jsonb,
+  created_at timestamptz not null default now()
+);
 create table if not exists public.order_items (id uuid primary key default gen_random_uuid(), order_id uuid not null references public.orders(id) on delete cascade, product_id uuid not null references public.products(id), quantity integer not null check(quantity between 1 and 5), unit_price_cents integer not null check(unit_price_cents>=0));
 create table if not exists public.digital_keys (id uuid primary key default gen_random_uuid(), product_id uuid not null references public.products(id), encrypted_key text not null, order_item_id uuid unique references public.order_items(id), created_at timestamptz not null default now());
 alter table public.profiles enable row level security;
