@@ -1,50 +1,156 @@
-# NEXORA GAMES
+# 🎮 NEXORA GAMES
 
-Premium gaming storefront — Full Stack portfolio foundation.
+### Full-Stack Gaming E-Commerce Platform
 
-## Included in this first implementation
+NEXORA GAMES is a modern gaming storefront developed as a full-stack portfolio project.
 
-- Original responsive dark premium storefront
-- Fictional game catalog, platform/genre filters, search, sorting
-- Cart with quantity controls (maximum five per item)
-- Server-side price calculation and item validation
-- Stripe Checkout **test mode only** (BRL)
-- Success page with explicit sandbox disclaimer
-- Supabase PostgreSQL schema with row-level security foundations
+Built with Next.js, React, TypeScript, Supabase, and Stripe, the application demonstrates e-commerce architecture, authentication, payment integration, and database-backed purchase history.
 
-**Not yet implemented:** actual user sign-up/login screens, persisted carts/orders, verified payment webhooks, key allocation, international currency checkout, admin dashboard, email, actual fulfillment and licensed catalog integration. These are future phases, not currently working features.
+> **Portfolio demonstration only.** All prices are illustrative. Payments use Stripe test mode. No real purchases or game keys are delivered.
 
-## Run locally
+## ✨ Features
 
-```bash
-npm install
-cp .env.example .env.local
-npm run dev
+### Gaming Storefront
+- Responsive dark-themed interface
+- Game catalog with platform and genre filters
+- Search and sorting functionality
+- Individual game pages
+- Shopping cart with quantity controls
+- Server-side checkout price validation
+
+### Authentication
+- Supabase authentication
+- User account dashboard
+- Authenticated account access
+
+### Payments & Orders
+- Stripe Checkout integration in test mode
+- Server-side checkout endpoint
+- Stripe webhook endpoint
+- Purchase history displayed in the account dashboard
+- Payment status tracking
+
+## 🛠 Tech Stack
+
+| Category | Technologies |
+| --- | --- |
+| Frontend | Next.js 15, React 19, TypeScript |
+| Styling | Tailwind CSS 4 |
+| Backend | Next.js API Routes |
+| Authentication | Supabase Auth |
+| Database | Supabase PostgreSQL |
+| Payments | Stripe Checkout |
+| Icons | Lucide React, React Icons |
+| Version Control | Git, GitHub |
+| Deployment | Vercel (planned) |
+
+## 📸 Screenshots
+
+Screenshots of the storefront, game catalog, checkout flow, and account dashboard will be added to this section.
+
+## 🏗 Project Structure
+
+```text
+src/
+├── app/
+│   ├── api/
+│   │   ├── checkout/
+│   │   └── webhooks/stripe/
+│   ├── auth/callback/
+│   ├── jogo/[id]/
+│   ├── login/
+│   ├── minha-conta/
+│   └── success/
+├── components/
+├── contexts/
+└── lib/
+
+supabase/
+└── schema.sql
 ```
 
-Open http://localhost:3000. The storefront and cart work without API keys. Checkout requires a Stripe **test** secret key in `.env.local`:
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js
+- npm
+- Supabase project
+- Stripe test account
+
+### Installation
+
+```bash
+git clone https://github.com/wilsonjr-create/NEXORA-GAMES.git
+cd NEXORA-GAMES
+npm install
+cp .env.example .env.local
+```
+
+Configure the required environment variables in `.env.local`.
 
 ```env
-STRIPE_SECRET_KEY=sk_test_...
+NEXT_PUBLIC_SUPABASE_URL=
+NEXT_PUBLIC_SUPABASE_ANON_KEY=
+SUPABASE_SERVICE_ROLE_KEY=
+STRIPE_SECRET_KEY=
+STRIPE_WEBHOOK_SECRET=
 NEXT_PUBLIC_SITE_URL=http://localhost:3000
 ```
 
-Never use live payment keys for this demo. Never commit `.env.local`. Stripe-hosted checkout supports payment methods enabled for the test account and region; not every payment method is automatically available.
+Never commit credentials or `.env.local` to version control.
 
-## Database foundation
+### Development
 
-Run `supabase/schema.sql` in your Supabase project SQL editor. Tables and RLS policies are a foundation only; the UI does not yet connect to these tables. Do not store plaintext game keys; `encrypted_key` requires application-layer encryption and secure key management before real usage.
+```bash
+npm run dev
+```
 
-## Roadmap
+Open http://localhost:3000.
 
-1. Supabase Auth, account pages and profiles
-2. Persistent cart, inventory and server-side orders
-3. Stripe webhook signature verification, idempotency and durable payment state
-4. Secure fictional key allocation, delivery library and emails
-5. Admin RBAC, audit logs, refund workflow and tests
-6. Internationalization, country-specific currencies and payment methods
-7. Licensed product feeds and approved distribution partners for any commercial launch
+### Production Build
 
-## Licensing
+```bash
+npm run build
+npm run start
+```
 
-All games and cover art in this demo are fictional, and the current artwork is CSS-generated. No third-party game logos or copyrighted cover images are redistributed.
+## 🔐 Security
+
+The project includes authentication, database access controls, and server-side checkout handling.
+
+Payment processing is restricted to Stripe test mode.
+
+Production deployment requires appropriate environment configuration, secure credential management, and validation of the complete payment flow.
+
+## 🗺 Roadmap
+
+- [x] Responsive gaming storefront
+- [x] Game catalog and filtering
+- [x] Shopping cart
+- [x] Supabase authentication
+- [x] User account dashboard
+- [x] Stripe test checkout integration
+- [x] Purchase history
+- [ ] Automated game-key allocation and delivery
+- [ ] Administrative inventory dashboard
+- [ ] Transactional email notifications
+- [ ] Production-ready commercial integrations
+
+## ⚠️ Disclaimer
+
+NEXORA GAMES is an independent educational and portfolio project.
+
+It is not affiliated with or endorsed by game publishers, storefronts, or platform owners. Game names and imagery belong to their respective rights holders.
+
+The application does not sell or distribute real game activation keys.
+
+## 👨‍💻 Developer
+
+**Wilson Jr — Full-Stack Developer**
+
+GitHub: https://github.com/wilsonjr-create
+
+---
+
+Built with Next.js, TypeScript, Supabase, and Stripe.
